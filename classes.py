@@ -1,5 +1,7 @@
 import sqlite3
 
+global error
+
 #função para conectar a database:
 def conectar_bd():
     return sqlite3.connect('database.db')
@@ -44,6 +46,25 @@ def usuario_existe(username):
 
     # Verifica se um usuário foi encontrado´
     return resultado is not None
+
+#autenticação de usuário para login
+def autenticar(username, senha):
+    if usuario_existe(username):
+        conn = conectar_bd()
+        cursor = conn.cursor()
+        cursor.execute("SELECT password FROM usuarios WHERE username=?", (username))
+        temp_pass = cursor.fetchone()
+        conn.close()
+
+        if senha == temp_pass:
+            return True
+        else:
+            error = "usuário e senha não correspondentes"
+            return False
+        
+    else:
+        error = "usuário inexistente"
+        return False
 
 #definindo cada classe:
 
