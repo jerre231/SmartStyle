@@ -1,7 +1,11 @@
-from flask import *
+from flask import Flask, render_template, request, redirect
 from classes import *
 
-app == Flask(__name__)
+app = Flask(__name__)
+
+@app.route("/")
+def redirecionador():
+    return redirect("/login")
 
 @app.route("/login", methods=['GET'])
 def login():        
@@ -42,5 +46,5 @@ def inserir_roupa(user):
 def planejador(user):
     pass
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
