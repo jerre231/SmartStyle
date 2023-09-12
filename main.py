@@ -1,5 +1,14 @@
 from flask import *
-from classes import *
+from classes import Roupa, Usuario
+
+roupas = []
+usuarios = []
+
+teste_user = Usuario('teste', '123')
+roupa1 = Roupa('calça', 'g', 'verde', 'inverno', 'calça1')
+roupas.append(roupa1)
+usuarios.append(teste_user)
+
 
 app == Flask(__name__)
 
