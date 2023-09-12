@@ -1,27 +1,37 @@
 from flask import *
-from classes import Roupa, Usuario
-
-roupas = []
-usuarios = []
-
-teste_user = Usuario('teste', '123')
-roupa1 = Roupa('calça', 'g', 'verde', 'inverno', 'calça1')
-roupas.append(roupa1)
-usuarios.append(teste_user)
-
+from classes import *
 
 app == Flask(__name__)
 
-@app.route("/login")
+@app.route("/login", methods=['GET'])
 def login():        
-    pass
+    if "login" in request.form:
+        user = request.form.get("name")
+        passw = request.form.get("senha")
 
-@app.route("/cadastro")
+        if autenticar(user, passw):
+            return redirect(f"/home/{user}")
+        
+        else:
+            print(error)
+            return redirect("/login")                          #TODO: adicionar mensagem de erro ao logar (ao invés de print)
+        
+    return render_template("login.html")
+
+@app.route("/cadastro", methods=['GET'])
 def cadastro():
-    pass
+    if "cadastrar" in request.form:
+        user = request.form.get("name_c")
+        passw = request.form.get("senha_c")
+        user_add = Usuario(user, passw)
+        user_add.cadastrar()
+        
+        return redirect("/login")
+
+    return render_template(cadastro.html)
 
 @app.route("/home")
-def cadastro(user):
+def home(user):
     pass
 
 @app.route("/inserir")
