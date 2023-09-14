@@ -41,30 +41,35 @@ def usuario_existe(username):
     cursor = conn.cursor()
     cursor.execute("SELECT username FROM usuarios WHERE username = ?", (username,))
     resultado = cursor.fetchone()
-
     conn.close()
 
-    # Verifica se um usuário foi encontrado´
+    # Verifica se um usuário foi encontrado
     return resultado is not None
 
-#autenticação de usuário para login
-def autenticar(username, senha):
-    if usuario_existe(username):
+# Autenticação de usuário para login
+def autenticar(nome, senha):
+    if usuario_existe(nome):
         conn = conectar_bd()
         cursor = conn.cursor()
-        cursor.execute("SELECT password FROM usuarios WHERE username=?", (username))
-        temp_pass = cursor.fetchone()
+        cursor.execute("SELECT password FROM usuarios WHERE username=?", (nome,))
+        temp_pass_tuple = cursor.fetchone()
         conn.close()
 
-        if senha == temp_pass:
-            return True
+        if temp_pass_tuple is not None:
+            temp_pass = temp_pass_tuple[0]
+
+            if senha == temp_pass:
+                return True
+            else:
+                error = "Senha incorreta"
+                return False
         else:
-            error = "usuário e senha não correspondentes"
+            error = "Usuário não encontrado"
             return False
-        
     else:
-        error = "usuário inexistente"
+        error = "Usuário inexistente"
         return False
+
 
 #definindo cada classe:
 

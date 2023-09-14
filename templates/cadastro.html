@@ -1,20 +1,23 @@
 <html>
-<head>
-    <title>Cadastro</title>
-</head>
-<body>
-    <h1>Cadastro</h1>
-    <form>
-        <label for="username">Nome:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <input type="submit" value="Register">
-    </form>
-</body>
+    <head>
+    </head>
+    <body>
+        <form method="POST" name="primary-form">
+            <div name="cadastro_title"><pr>Cadastro</pr></div>
+            <div class="input_box">
+            <label for="name">Nome: </label>
+            <input name="name_c" type="text"/>
+            <input type="hidden" name="name_c" value="{{ name_c }}">
+            </div>
+            <div class="input_box">
+            <label for="password">Senha: </label>
+            <input name="passw_c" type="text"/>
+            </div>
+            <div class="input_box" name="submit_box">
+            <input name="cadastrar" type="submit" value="Cadastrar"/>
+            <form action="{{ url_for('login') }}" method="get">
+            <input name="Voltar" type="submit" value="Voltar"/></form>
+            </div>
+        </form>
+    </body>
 </html>
