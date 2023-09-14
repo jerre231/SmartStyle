@@ -40,7 +40,7 @@ def cadastro():
     return render_template("cadastro.html")
 
 
-@app.route("/home")
+@app.route("/home/<user>")
 def home(user):
     return render_template("/home.html")
 

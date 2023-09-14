@@ -46,7 +46,7 @@ def usuario_existe(username):
     # Verifica se um usuário foi encontrado
     return resultado is not None
 
-# Autenticação de usuário para login
+# Autenticação de usuário para login, caso usuario nao exista ou senha errada retonar falso, caso esteja tudo certo retorna true
 def autenticar(nome, senha):
     if usuario_existe(nome):
         conn = conectar_bd()

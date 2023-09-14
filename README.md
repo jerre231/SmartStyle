@@ -4,15 +4,11 @@ Projeto desenvolvido para a disciplina de Linguagens de Programção da <a href=
 
 **Alunos:**
 
-- Bernardo Pache de Faria Carneiro
+- Gustavo (colocar o sobrenome)
 
 - Henrique Pousa
 
 - João Ricardo Monteiro Scofield Lauar
-
-- João Vitor Pinto Vizeu
-
-- Maria Vilas-Boas
 
 **Para executar o código, utilize os seguintes comandos:**
 
