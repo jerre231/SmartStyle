@@ -38,6 +38,10 @@ def cadastro():
 def home(user):
     pass
 
+@app.route("/armario")
+def planejador(user):
+    pass
+
 @app.route("/inserir")
 def inserir_roupa(user):
     pass
