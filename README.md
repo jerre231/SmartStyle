@@ -4,7 +4,7 @@ Projeto desenvolvido para a disciplina de Linguagens de Programção da <a href=
 
 **Alunos:**
 
-- Gustavo (colocar o sobrenome)
+- Gustavo De Oliveira Freitas
 
 - Henrique Pousa
 
