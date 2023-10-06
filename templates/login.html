@@ -1,22 +1,27 @@
 <html>
-    <head>
-    <body>
-        <form method="POST" name="primary-form">
-            <div name="login_title"><pr>Login</pr></div>
-            <div class="input_box">
-            <label for="name">Nome: </label>
-            <input name="name" type="text"/>
-            <input type="hidden" name="username" value="{{ username }}">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+</head>
+<body>
+    <form method="POST" name="primary-form">
+        <div class="login-container">
+            <h1 class="login-title">Login</h1>
+            <div class="login-input-box">
+                <input name="name" type="text"/>
+                <input type="hidden" name="username" value="{{ username }}">
             </div>
-            <div class="input_box">
-            <label for="password">Senha: </label>
-            <input name="password" type="password"/>
+            <div class="login-input-box">
+                <input name="password" type="password"/>
             </div>
-            <div class="input_box" name="submit_box">
-            <input name="login" type="submit" value="login"/>
-            <form action="{{ url_for('cadastro') }}" method="get">
-            <input name="cadastro" type="submit" value="cadastro"/></form>
+            <div class="login-input-box" name="submit-box">
+                <input name="login" type="submit" value="login"/>
+                <form action="{{ url_for('cadastro') }}" method="get">
+                    <input name="cadastro" type="submit" value="cadastro"/>
+                </form>
             </div>
-        </form>
-    </body>
+        </div>
+    </form>
+</body>
 </html>

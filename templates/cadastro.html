@@ -1,23 +1,30 @@
+\<!DOCTYPE html>
 <html>
-    <head>
-    </head>
-    <body>
-        <form method="POST" name="primary-form">
-            <div name="cadastro_title"><pr>Cadastro</pr></div>
-            <div class="input_box">
-            <label for="name">Nome: </label>
-            <input name="name_c" type="text"/>
-            <input type="hidden" name="name_c" value="{{ name_c }}">
+<head>
+    <title>Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+</head>
+<body>
+    <form method="POST" name="primary-form">
+        <div class="login-container">
+            <h1 class="login-title">Cadastro</h1>
+            <div class="login-input-box">
+                <label for="name">Nome: </label>
+                <input name="name_c" type="text"/>
+                <input type="hidden" name="name_c" value="{{ name_c }}">
             </div>
-            <div class="input_box">
-            <label for="password">Senha: </label>
-            <input name="passw_c" type="text"/>
+            <div class="login-input-box">
+                <label for="password">Senha: </label>
+                <input name="passw_c" type="text"/>
             </div>
-            <div class="input_box" name="submit_box">
-            <input name="cadastrar" type="submit" value="Cadastrar"/>
-            <form action="{{ url_for('login') }}" method="get">
-            <input name="Voltar" type="submit" value="Voltar"/></form>
+            <div class="login-input-box" name="submit-box">
+                <input name="cadastrar" type="submit" value="Cadastrar"/>
+                <form action="{{ url_for('login') }}" method="get">
+                    <input name="Voltar" type="submit" value="Voltar"/>
+                </form>
             </div>
-        </form>
-    </body>
+        </div>
+    </form>
+</body>
 </html>
