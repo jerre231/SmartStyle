@@ -1,0 +1,55 @@
+/* Mantem estilo consistente */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Aplica a fonte global */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Define cor de fundo*/
+body {
+    background-color: #f8f8f8;
+}
+
+/* Define um cointener pro conteudo principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilo dos titulos */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Estilo dos paragrafos */
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Estilo de links */
+a {
+    color: #ebe5e5;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
