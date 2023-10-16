@@ -4,6 +4,9 @@
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
 </head>
 <body>
+    {% if error_message %}
+    <p class="error">{{ error_message }}</p>
+    {% endif %}
     <form method="POST" name="primary-form">
         <div class="login-container">
             <h1 class="login-title">Login</h1>

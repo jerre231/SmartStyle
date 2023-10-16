@@ -8,7 +8,10 @@ def redirecionador():
     return redirect("/login")
 
 @app.route("/login", methods=['GET', 'POST'])
-def login():        
+def login():
+
+    error_message = ""
+
     if "login" in request.form:
         user = request.form.get("name")
         passw = request.form.get("password")
@@ -17,12 +20,12 @@ def login():
             return redirect(f"/home/{user}")
         
         else:
-            return redirect("/login")                          #TODO: adicionar mensagem de erro ao logar (ao invés de print)
+            error_message = "Usuario ou senha invalidos, tente novamente ou cadastre-se."
         
     if "cadastro" in request.form:
         return redirect("/cadastro")
     
-    return render_template("login.html")
+    return render_template("login.html", error_message=error_message)
 
 @app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
