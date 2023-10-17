@@ -1,12 +1,15 @@
-from flask import Flask, render_template, request, redirect
+from flask import *
 from models import *
+import os
+import uuid
 
 app = Flask(__name__)
 
-@app.route("/")
-def redirecionador():
-    return redirect("/login")
+UPLOAD_FOLDER = 'uploads'  # Nome da pasta onde as imagens serão salvas
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
+@app.route("/", methods=['GET', 'POST'])
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 
@@ -46,7 +49,7 @@ def cadastro():
 @app.route("/home/<user>", methods=['GET', 'POST'])
 def home(user):
     if "inserir" in request.form:
-        return redirect(f"/inserir/{user}")
+        return redirect(f"/inserir_roupa/{user}")
     elif "exibir" in request.form:
         return redirect(f"/armario/{user}")
 
@@ -56,18 +59,37 @@ def home(user):
 def armario(user):
     return render_template("armario.html")
 
-@app.route("/inserir/<user>", methods=['GET', 'POST'])
+@app.route("/inserir_roupa/<user>", methods=['GET', 'POST'])
 def inserir_roupa(user):
-    if "enviar" in request.form:
-        imagem = request.form.get("imagem")
-        roupa = Roupa(user, "blusa", imagem)
-        roupa.inserir
-    
+    global red_user
+    red_user = user
     return render_template("inserir_roupa.html")
         
 @app.route("/planejador/<user>")
 def planejador(user):
     return render_template("planejador.html")
 
+@app.route("/upload", methods=['POST'])
+def upload_file():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
+
+    if 'imagem' not in request.files:
+        return redirect(request.url)
+
+    file = request.files['imagem']
+
+    if file.filename == '':
+        return redirect(request.url)
+
+    if file:
+        unique_filename = str(uuid.uuid4()) + "_" + file.filename
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], unique_filename))
+        image_path = f"uploads/{unique_filename}"
+        roupa = Roupa("admin", "tatu", image_path)
+        roupa.inserir()
+
+        return redirect(f"/inserir_roupa/{red_user}")
+    
 if __name__ == '__main__':
     app.run(debug=True)
