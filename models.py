@@ -56,11 +56,7 @@ class Roupa:
         db = client.get_database("smartStyle")
         roupas = db.get_collection("roupas")
 
-        #presume-se que a imagem é um caminho para a imagem.
-        with open(self.imagem, "rb") as image_file:
-            image_data = image_file.read()
-
-        data = {"user": self.username, "tipo": self.tipo, "imagem": image_data}
+        data = {"user": self.username, "tipo": self.tipo, "imagem": self.img}
         roupas.insert_one(data)
         client.close()
 
