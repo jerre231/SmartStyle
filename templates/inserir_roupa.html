@@ -4,12 +4,12 @@
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
 </head>
 <body>
-    <h1>Add Roupa</h1>
-    <!-- Formato de add roupa -->
-
-    <a href="ver_roupas.html"> <!-- Volta pro armario -->
-        <button>Voltar</button>
-    </a>
-    
+    <h1>Formulário de Upload de Imagem</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="imagem">Selecione uma imagem:</label>
+        <input type="file" name="imagem" id="imagem">
+        <br>
+        <input type="submit" value="enviar" name="enviar" id="enviar">
+    </form>
 </body>
 </html>

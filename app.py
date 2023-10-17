@@ -56,11 +56,16 @@ def home(user):
 def armario(user):
     return render_template("armario.html")
 
-@app.route("/inserir/<user>")
+@app.route("/inserir/<user>", methods=['GET', 'POST'])
 def inserir_roupa(user):
+    if "enviar" in request.form:
+        imagem = request.form.get("imagem")
+        roupa = Roupa(user, "blusa", imagem)
+        roupa.inserir
+    
     return render_template("inserir_roupa.html")
         
-@app.route("/planejador")
+@app.route("/planejador/<user>")
 def planejador(user):
     return render_template("planejador.html")
 
