@@ -60,10 +60,8 @@ def armario(user):
 
 @app.route("/inserir/<user>", methods=['GET', 'POST'])
 def inserir_roupa(user):
-    if "enviar" in request.form:
-        imagem = request.form.get("imagem")
-        roupa = Roupa(user, "blusa", imagem)
-        roupa.inserir()
+    if "enviar_categoria" in request.form:
+        tipo = request.form.get("categoria")
     if "home" in request.form:
         return redirect(f"/home/{user}")
     
