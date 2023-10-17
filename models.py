@@ -49,7 +49,7 @@ def exibir_home(username, dia):
     db = client.get_database("smartStyle")
     dias = db.get_collection("dias")
 
-    filtro = {"dia": dia}
+    filtro = {"user": username, "dia": dia}
 
     dia_document = dias.find_one(filtro)
 
@@ -96,9 +96,11 @@ class Roupa:
         pass
 
 class Dia:
-    def __init__(self, dia, acessorio, superior, inferior, calcado):
+    def __init__(self, user, dia, acessorio, superior, inferior, calcado):
         self.dia = dia
+        self.user = user
         self.data = {
+            "user": user,
             "dia": dia,
             "acessorio": acessorio,
             "superior": superior,
@@ -110,7 +112,7 @@ class Dia:
         client = start_client()
         db = client.get_database("smartStyle")
         dias = db.get_collection("dias")
-        filtro = {"dia": self.dia}
+        filtro = {"user": self.user,"dia": self.dia}
 
         dias.update_one(filtro, {"$set": self.data}, upsert=True) #upsert=true garante que se o criterio nao for atendido o documento sera criado do mesmo jeito
         client.close()
