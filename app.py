@@ -1,18 +1,22 @@
 from flask import *
 from models import *
 import os
+
+#Bilbioteca utilizada para criar nomes específicos e diferentes para cada imagem, assim não há como sobreescreve-las
 import uuid
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'uploads'  # Nome da pasta onde as imagens serão salvas
+#Criando a pasta das imagens das roupas
+UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
+#Rota para o login, inicializa o site aqui
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 
+    #Inicializando a mensagem de erro como uma string vazia, para não aparecer caso não haja erro
     error_message = ""
 
     if "login" in request.form:
@@ -30,6 +34,8 @@ def login():
     
     return render_template("login.html", error_message=error_message)
 
+
+#Rota para o cadastro
 @app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
     if "cadastrar" in request.form:
