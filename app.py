@@ -63,6 +63,9 @@ def armario(user):
 def inserir_roupa(user):
     global red_user
     red_user = user
+
+    tipo = request.get("categoria")
+
     return render_template("inserir_roupa.html")
         
 @app.route("/planejador/<user>")
@@ -86,7 +89,7 @@ def upload_file():
         unique_filename = str(uuid.uuid4()) + "_" + file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], unique_filename))
         image_path = f"uploads/{unique_filename}"
-        roupa = Roupa("admin", "tatu", image_path)
+        roupa = Roupa(red_user, "tatu", image_path)
         roupa.inserir()
 
         return redirect(f"/inserir_roupa/{red_user}")
