@@ -103,6 +103,7 @@ def armario(user):
             calcado_selecionado = request.form.get("calcado")
 
             dia = Dia(
+                user,
                 dia_semana,
                 acessorio_selecionado,
                 superior_selecionado,
