@@ -5,33 +5,58 @@
 </head>
 <body>
     <h1>Acessórios Images</h1>
+    <form method="POST">
     <div class="image-container">
         {% for cat in cat1 %}
-            <img src="{{ cat }}">
+            <label>
+                <input type="radio" name="acessorio" value="{{ cat }}">
+                <img src="{{ cat }}">
+            </label>
         {% endfor %}
     </div>
     <h1>Superior Images</h1>
     <div class="image-container">
         {% for cat in cat2 %}
-            <img src="{{ cat }}">
+            <label>
+                <input type="radio" name="superior" value="{{ cat }}">
+                <img src="{{ cat }}">
+            </label>
         {% endfor %}
     </div>
     <h1>Inferior Images</h1>
     <div class="image-container">
         {% for cat in cat3 %}
-            <img src="{{ cat }}">
+            <label>
+                <input type="radio" name="inferior" value="{{ cat }}">
+                <img src="{{ cat }}">
+            </label>
         {% endfor %}
     </div>
     <h1>Calçados Images</h1>
     <div class="image-container">
         {% for cat in cat4 %}
-            <img src="{{ cat }}">
+            <label>
+                <input type="radio" name="calcado" value="{{ cat }}">
+                <img src="{{ cat }}">
+            </label>
         {% endfor %}
     </div>
-    <form method="POST">
+        <label for="dia_semana">Escolha o dia da semana:</label>
+        <select name="dia_semana" id="dia_semana">
+            <option value="segunda">Segunda-feira</option>
+            <option value="terca">Terça-feira</option>
+            <option value="quarta">Quarta-feira</option>
+            <option value="quinta">Quinta-feira</option>
+            <option value="sexta">Sexta-Feira</option>
+            <option value="sabado">Sabado</option>
+            <option value="domingo">Domingo</option>
+        </select>
+        <input name="Submeter"type="submit" value="Submeter">
+        
         <a>
             <input name="home" type="submit" value="home"/>
         </a>
     </form>
+    
 </body>
 </html>

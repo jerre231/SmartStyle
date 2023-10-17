@@ -1,14 +1,37 @@
 <html>
 <head>
-    <title>Planejador</title>
+    <title>Armario</title>
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
 </head>
 <body>
-    <h1>Planejador</h1>
-    <!-- add interface para planejar eventos no futuro que afetam sua roupa -->
-
-    <a href="home.html"> <!-- Volta pra home -->
-        <button>Home</button>
-    </a>
+    <h1>Acessórios Images</h1>
+    <div class="image-container">
+        {% for cat in cat1 %}
+            <img src="{{ cat }}">
+        {% endfor %}
+    </div>
+    <h1>Superior Images</h1>
+    <div class="image-container">
+        {% for cat in cat2 %}
+            <img src="{{ cat }}">
+        {% endfor %}
+    </div>
+    <h1>Inferior Images</h1>
+    <div class="image-container">
+        {% for cat in cat3 %}
+            <img src="{{ cat }}">
+        {% endfor %}
+    </div>
+    <h1>Calçados Images</h1>
+    <div class="image-container">
+        {% for cat in cat4 %}
+            <img src="{{ cat }}">
+        {% endfor %}
+    </div>
+    <form method="POST">
+        <a>
+            <input name="home" type="submit" value="home"/>
+        </a>
+    </form>
 </body>
 </html>

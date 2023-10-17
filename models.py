@@ -75,3 +75,24 @@ class Roupa:
 
     def remover(self):
         pass
+
+class Dia:
+    def __init__(self, dia, acessorio, superior, inferior, calcado):
+        self.dia = dia
+        self.data = {
+            "dia": dia,
+            "acessorio": acessorio,
+            "superior": superior,
+            "inferior": inferior,
+            "calcado": calcado
+        }
+
+    def inserir_editar(self):
+        client = start_client()
+        db = client.get_database("smartStyle")
+        dias = db.get_collection("dias")
+        filtro = {"dia": self.dia}
+
+        dias.update_one(filtro, {"$set": self.data}, upsert=True) #upsert=true garante que se o criterio nao for atendido o documento sera criado do mesmo jeito
+        client.close()
+        

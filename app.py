@@ -68,6 +68,26 @@ def armario(user):
     inferiores =  exibir_roupas(user, "inferior")
     calcados = exibir_roupas(user, "calcado")
 
+    if request.method == 'POST':
+        if "Submeter" in request.form:
+
+            dia_semana = request.form.get("dia_semana")
+  
+            acessorio_selecionado = request.form.get("acessorio")
+            superior_selecionado = request.form.get("superior")
+            inferior_selecionado = request.form.get("inferior")
+            calcado_selecionado = request.form.get("calcado")
+
+            dia = Dia(
+                dia_semana,
+                acessorio_selecionado,
+                superior_selecionado,
+                inferior_selecionado,
+                calcado_selecionado
+            )
+
+            dia.inserir_editar()
+    
     if "home" in request.form:
         return redirect(url_for("home", user=user))
     
@@ -124,3 +144,4 @@ def upload_file():
     
 if __name__ == '__main__':
     app.run(debug=True)
+    
