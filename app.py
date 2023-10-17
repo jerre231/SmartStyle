@@ -49,7 +49,7 @@ def cadastro():
 @app.route("/home/<user>", methods=['GET', 'POST'])
 def home(user):
     if "inserir" in request.form:
-        return redirect(f"/inserir_roupa/{user}")
+        return redirect(f"/inserir_roupa_categoria/{user}")
     elif "exibir" in request.form:
         return redirect(f"/armario/{user}")
 
@@ -59,13 +59,20 @@ def home(user):
 def armario(user):
     return render_template("armario.html")
 
+@app.route("/inserir_roupa_categoria/<user>", methods=['GET', 'POST'])
+def inserir_roupa_categoria(user):
+    if "enviar_categoria" in request.form:
+        global tipo
+        tipo = request.form.get("categoria")
+
+        return redirect(url_for('inserir_roupa', user=user))
+    
+    return render_template("inserir_roupa1.html")
+
 @app.route("/inserir_roupa/<user>", methods=['GET', 'POST'])
 def inserir_roupa(user):
     global red_user
     red_user = user
-
-    tipo = request.get("categoria")
-
     return render_template("inserir_roupa.html")
         
 @app.route("/planejador/<user>")
@@ -89,7 +96,7 @@ def upload_file():
         unique_filename = str(uuid.uuid4()) + "_" + file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], unique_filename))
         image_path = f"uploads/{unique_filename}"
-        roupa = Roupa(red_user, "tatu", image_path)
+        roupa = Roupa(red_user, tipo, image_path)
         roupa.inserir()
 
         return redirect(f"/inserir_roupa/{red_user}")
