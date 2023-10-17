@@ -63,7 +63,8 @@ def home(user):
 
 @app.route("/armario/<user>")
 def armario(user):
-    return render_template("armario.html")
+    imagens = exibir_roupas(user, "acessorio")
+    return render_template("armario.html", imagens=imagens)
 
 #Primeira etapa de adicionar roupa, escolhe a categoria
 @app.route("/inserir_roupa_categoria/<user>", methods=['GET', 'POST'])
@@ -105,7 +106,7 @@ def upload_file():
     if file:
         unique_filename = str(uuid.uuid4()) + "_" + file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], unique_filename))
-        image_path = f"uploads/{unique_filename}"
+        image_path = f"/uploads/{unique_filename}"
         roupa = Roupa(red_user, tipo, image_path)
         roupa.inserir()
 

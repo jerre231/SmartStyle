@@ -4,11 +4,15 @@
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
 </head>
 <body>
-    <h1>Ver roupas</h1>
-    <!-- codigo que mostra o database do usuario-->
+    <h1>Categoria Images</h1>
+    <div class="image-container">
+        {% for image in images %}
+            <img src="{{ image }}" alt="Imagem">
+        {% endfor %}
+    </div>
 
-    <a href="home.html"> <!-- Volta pra home -->
-        <button>Home</button>
+    <a>
+        <button name="home" id="home">Voltar</button>
     </a>
     
 </body>

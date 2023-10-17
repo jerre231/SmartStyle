@@ -1,5 +1,6 @@
 import pymongo
 
+#função utilizada para facilitar o start do client da db
 def start_client():
     client = pymongo.MongoClient("localhost", 27017)
     return client
@@ -17,7 +18,7 @@ def usuario_existe(username):
     else:
         client.close
         return False
-
+#função binária para autenticar usuario e senha
 def autenticar(nome, senha):
     client = start_client() 
     db = client.get_database("smartStyle")
@@ -29,7 +30,19 @@ def autenticar(nome, senha):
     else:
         client.close()
         return False
+    
 
+def exibir_roupas(username, tipo):
+    client = start_client()
+    db = client.get_database("smartStyle")
+    roupas = db.get_collection("roupas")
+    filtro = {"user": username, "tipo": tipo}
+
+    fotos = roupas.find(filtro)
+
+    imagens = [foto["imagem"] for foto in fotos]
+    
+    return imagens
 
 class Usuario:
     def __init__(self, us, pw):
