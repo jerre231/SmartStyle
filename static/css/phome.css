@@ -1,62 +1,61 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Roboto Condensed', sans-serif;
-    background-color: #101728;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  h1 {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 36px;
-    color: #333; 
-    margin-bottom: 20px;
-  }
-  
-  form {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  
-  button {
-    background-color: #3498db; 
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Pixelify Sans', sans-serif;
-    font-weight: 600;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #2e85c7; 
-  }
-  
-  h2 {
-    font-size: 24px;
-    color: #333; 
-    margin-top: 20px;
-  }
-  
-  .image-container {
-    display: inline-block;
-    margin: 20px;
-  }
-  
-  img {
-    max-width: 100%;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: #101728;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2e85c7;
+}
+
+h2 {
+  font-size: 24px;
+  color: #bebebe;
+  margin-top: 20px;
+}
+
+.image-container {
+  display: block;
+  margin: 20px 0; /* Adjust the vertical margin as needed */
+}
+
+img {
+  max-width: 100%;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

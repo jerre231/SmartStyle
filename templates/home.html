@@ -10,26 +10,24 @@
     <h1>SmarStyle</h1>
     <form method="POST">
         <a>
-            <button name="inserir" id="inserir">inserir</button>
+            <button name="inserir" id="inserir">Inserir</button>
         </a>
         <a></a>
-            <button name="exibir" id="exibir">exibir</button>
+            <button name="exibir" id="exibir">Armario</button>
         </a>
     </form>
     <h2>Roupa de hoje:</h2>
     <div class="image-container">
-        <img src="{{ acessorio }}">
+        <img src="{{ acessorio }}" onerror="this.src='/static/imagens/Acessorio_generico.png'">
     </div>
     <div class="image-container">
-        <img src="{{ superior }}">
+        <img src="{{ superior }}" onerror="this.src='/static/imagens/Camisa_generica.png'">
     </div>
     <div class="image-container">
-        <img src="{{ inferior }}">
+        <img src="{{ inferior }}" onerror="this.src='/static/imagens/Bermuda_generica.png'">
     </div>
     <div class="image-container">
-        <img src="{{ calcado }}">
+        <img src="{{ calcado }}" onerror="this.src='/static/imagens/calcado_generico.png'">
     </div>
 </body>
 </html>
-
-
