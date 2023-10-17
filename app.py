@@ -65,6 +65,7 @@ def home(user):
 def armario(user):
     return render_template("armario.html")
 
+#Primeira etapa de adicionar roupa, escolhe a categoria
 @app.route("/inserir_roupa_categoria/<user>", methods=['GET', 'POST'])
 def inserir_roupa_categoria(user):
     if "enviar_categoria" in request.form:
@@ -75,8 +76,10 @@ def inserir_roupa_categoria(user):
     
     return render_template("inserir_roupa1.html")
 
+#Segunda etapa de adicionar roupa, envia a imagem da roupa
 @app.route("/inserir_roupa/<user>", methods=['GET', 'POST'])
 def inserir_roupa(user):
+    #definindo como global para poder repassar para o action do upload
     global red_user
     red_user = user
     return render_template("inserir_roupa.html")
@@ -85,6 +88,7 @@ def inserir_roupa(user):
 def planejador(user):
     return render_template("planejador.html")
 
+#Action acionada pelo html, salva a imagem na pasta uploads e declara o objeto roupa usando como parametro as variaveis globais
 @app.route("/upload", methods=['POST'])
 def upload_file():
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
@@ -105,7 +109,7 @@ def upload_file():
         roupa = Roupa(red_user, tipo, image_path)
         roupa.inserir()
 
-        return redirect(f"/inserir_roupa/{red_user}")
+        return redirect(url_for('home', user=red_user))
     
 if __name__ == '__main__':
     app.run(debug=True)
