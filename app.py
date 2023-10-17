@@ -43,15 +43,20 @@ def cadastro():
     return render_template("cadastro.html")
 
 
-@app.route("/home/<user>")
+@app.route("/home/<user>", methods=['GET', 'POST'])
 def home(user):
+    if "inserir" in request.form:
+        return redirect(f"/inserir/{user}")
+    elif "exibir" in request.form:
+        return redirect(f"/armario/{user}")
+
     return render_template("/home.html")
 
-@app.route("/armario")
+@app.route("/armario/<user>")
 def armario(user):
     return render_template("armario.html")
 
-@app.route("/inserir")
+@app.route("/inserir/<user>")
 def inserir_roupa(user):
     return render_template("inserir_roupa.html")
         

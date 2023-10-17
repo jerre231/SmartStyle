@@ -1,8 +1,5 @@
 import pymongo
 
-global error
-
-#função para inicializar o cliente da database:
 def start_client():
     client = pymongo.MongoClient("localhost", 27017)
     return client
@@ -47,3 +44,24 @@ class Usuario:
             data = {"nome": self.username, "senha": self.password}
             usuarios.insert_one(data)
             client.close()
+
+class Roupa:
+    def __init__(self, user, tipo, imagem):
+        self.username = user
+        self.tipo = tipo
+        self.img = imagem
+
+    def inserir(self):
+        client = start_client()
+        db = client.get_database("smartStyle")
+        roupas = db.get_collection("roupas")
+
+        with open(self.imagem, "rb") as image_file:
+            image_data = image_file.read()
+
+        data = {"user": self.username, "tipo": self.tipo, "imagem": image_data}
+        roupas.insert_one(data)
+        client.close()
+
+    def remover(self):
+        pass
