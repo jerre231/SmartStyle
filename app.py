@@ -8,7 +8,7 @@ import uuid
 app = Flask(__name__)
 
 #Criando a pasta das imagens das roupas
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #Rota para o login, inicializa o site aqui
@@ -61,10 +61,17 @@ def home(user):
 
     return render_template("/home.html")
 
-@app.route("/armario/<user>")
+@app.route("/armario/<user>", methods=['GET', 'POST'])
 def armario(user):
-    imagens = exibir_roupas(user, "acessorio")
-    return render_template("armario.html", imagens=imagens)
+    acessorios = exibir_roupas(user, "acessorio")
+    superiores =  exibir_roupas(user, "superior")
+    inferiores =  exibir_roupas(user, "inferior")
+    calcados = exibir_roupas(user, "calcado")
+
+    if "home" in request.form:
+        return redirect(url_for("home", user=user))
+    
+    return render_template("armario.html", cat1=acessorios, cat2=superiores, cat3=inferiores, cat4=calcados)
 
 #Primeira etapa de adicionar roupa, escolhe a categoria
 @app.route("/inserir_roupa_categoria/<user>", methods=['GET', 'POST'])
@@ -74,6 +81,9 @@ def inserir_roupa_categoria(user):
         tipo = request.form.get("categoria")
 
         return redirect(url_for('inserir_roupa', user=user))
+    
+    elif "home" in request.form:
+        return redirect(url_for('home', user=user))
     
     return render_template("inserir_roupa1.html")
 
@@ -106,7 +116,7 @@ def upload_file():
     if file:
         unique_filename = str(uuid.uuid4()) + "_" + file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], unique_filename))
-        image_path = f"/uploads/{unique_filename}"
+        image_path = f"/static/{unique_filename}"
         roupa = Roupa(red_user, tipo, image_path)
         roupa.inserir()
 
