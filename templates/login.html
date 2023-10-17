@@ -1,20 +1,27 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Pixelify+Sans:wght@400;500;600&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/css/login.css">
 </head>
 <body>
+    <div class="container"></div>
+    <img src="static/css/logos.png" alt="LogoSite" class="logo">
     {% if error_message %}
     <p class="error">{{ error_message }}</p>
     {% endif %}
     <form method="POST" name="primary-form">
         <div class="login-container">
-            <h1 class="login-title">Login</h1>
+            <h1 class="login-title">SmartStyle - Seu armário inteligente</h1>
             <div class="login-input-box">
+                <label for="name"> Nome: </label>
                 <input name="name" type="text"/>
                 <input type="hidden" name="username" value="{{ username }}">
             </div>
             <div class="login-input-box">
+                <label for="password"> Senha: </label>
                 <input name="password" type="password"/>
             </div>
             <div class="login-input-box" name="submit-box">
