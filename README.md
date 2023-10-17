@@ -17,5 +17,5 @@ Projeto desenvolvido para a disciplina de Linguagens de Programção da <a href=
 ```
 
 ```shell
-flask --app main run
+flask run
 ```
