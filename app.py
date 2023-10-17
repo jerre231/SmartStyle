@@ -1,6 +1,7 @@
 from flask import *
 from models import *
 import os
+import datetime
 
 #Bilbioteca utilizada para criar nomes específicos e diferentes para cada imagem, assim não há como sobreescreve-las
 import uuid
@@ -10,6 +11,7 @@ app = Flask(__name__)
 #Criando a pasta das imagens das roupas
 UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 #Rota para o login, inicializa o site aqui
 @app.route("/", methods=['GET', 'POST'])
@@ -58,8 +60,30 @@ def home(user):
         return redirect(f"/inserir_roupa_categoria/{user}")
     elif "exibir" in request.form:
         return redirect(f"/armario/{user}")
+    
+    data_atual = datetime.datetime.now()
+    dia_da_semana = data_atual.strftime("%A")
 
-    return render_template("/home.html")
+    mapeamento_dias = {
+    "Monday": "segunda",
+    "Tuesday": "terca",
+    "Wednesday": "quarta",
+    "Thursday": "quinta",
+    "Friday": "sexta",
+    "Saturday": "sabado",
+    "Sunday": "domingo"
+    }  
+
+    nome_dia_abreviado = mapeamento_dias.get(dia_da_semana, dia_da_semana)
+
+    resultado = exibir_home(user, nome_dia_abreviado)
+
+    if resultado is not None:
+        acessorio, superior, inferior, calcado = resultado
+    else:
+        acessorio, superior, inferior, calcado = None, None, None, None
+
+    return render_template("/home.html", acessorio=acessorio, superior=superior, inferior=inferior, calcado=calcado, dia_da_semana=dia_da_semana)
 
 @app.route("/armario/<user>", methods=['GET', 'POST'])
 def armario(user):
@@ -114,10 +138,6 @@ def inserir_roupa(user):
     global red_user
     red_user = user
     return render_template("inserir_roupa.html")
-        
-@app.route("/planejador/<user>")
-def planejador(user):
-    return render_template("planejador.html")
 
 #Action acionada pelo html, salva a imagem na pasta uploads e declara o objeto roupa usando como parametro as variaveis globais
 @app.route("/upload", methods=['POST'])

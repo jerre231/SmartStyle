@@ -44,6 +44,25 @@ def exibir_roupas(username, tipo):
     
     return imagens
 
+def exibir_home(username, dia):
+    client = start_client()
+    db = client.get_database("smartStyle")
+    dias = db.get_collection("dias")
+
+    filtro = {"dia": dia}
+
+    dia_document = dias.find_one(filtro)
+
+    if dia_document:
+        acessorio = dia_document.get("acessorio")
+        superior = dia_document.get("superior")
+        inferior = dia_document.get("inferior")
+        calcado = dia_document.get("calcado")
+
+        return acessorio, superior, inferior, calcado
+    else:
+        return None
+
 class Usuario:
     def __init__(self, us, pw):
         self.username = us
