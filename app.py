@@ -76,7 +76,7 @@ def home(user):
 
     nome_dia_abreviado = mapeamento_dias.get(dia_da_semana, dia_da_semana)
 
-    resultado = exibir_home(user, nome_dia_abreviado)
+    resultado = exibir_home(user, "quarta")
 
     if resultado is not None:
         acessorio, superior, inferior, calcado = resultado

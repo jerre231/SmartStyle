@@ -10,11 +10,7 @@ Projeto desenvolvido para a disciplina de Linguagens de Programção da <a href=
 
 - João Ricardo Monteiro Scofield Lauar
 
-**Para executar o código, utilize os seguintes comandos:**
-
-```shell
-./install.sh
-```
+**Para executar o código, utilize o seguinte comando:**
 
 ```shell
 flask run
